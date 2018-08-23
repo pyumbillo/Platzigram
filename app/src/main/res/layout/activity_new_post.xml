@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,47 @@
     tools:context=".post.view.NewPostActivity">
 <include layout="@layout/actionbar_toolbar"/>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></LinearLayout>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:scaleType="centerCrop"
+            android:background="@color/backgroundtext_cards"/>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:theme="@style/EditTextBlack"
+            android:layout_marginTop="@dimen/editTextMargin_createAccount">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintTitle" />
+        </android.support.design.widget.TextInputLayout>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:theme="@style/EditTextBlack"
+            android:layout_marginTop="@dimen/editTextMargin_createAccount">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/edtDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/hintDescription" />
+        </android.support.design.widget.TextInputLayout>
+        <Button
+            android:id="@+id/btnCreatePost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_button_createPost"
+            android:theme="@style/RaisedButton" />
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

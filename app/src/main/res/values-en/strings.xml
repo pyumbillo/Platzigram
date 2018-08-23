@@ -16,4 +16,6 @@
     <string name="secondwordDetail">Me gusta</string>
     <string name="tittleimagedetail">\'Todo copas en la playa\'</string>
     <string name="login_error">Something is wrong</string>
+    <string name="hintTitle">Titulo</string>
+    <string name="hintDescription">Descripcion</string>
 </resources>
