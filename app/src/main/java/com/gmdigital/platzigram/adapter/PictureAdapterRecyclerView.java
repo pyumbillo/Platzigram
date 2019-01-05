@@ -14,10 +14,8 @@ import android.widget.TextView;
 
 import com.gmdigital.platzigram.R;
 import com.gmdigital.platzigram.model.Picture;
-import com.gmdigital.platzigram.view.PictureDetailActivity;
+import com.gmdigital.platzigram.post.view.PictureDetailActivity;
 import com.squareup.picasso.Picasso;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 

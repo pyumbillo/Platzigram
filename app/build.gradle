@@ -1,4 +1,11 @@
 apply plugin: 'com.android.application'
+def FACEBOOK_APP_ID = '"'+FacebookAppId+'"'?: '"No token Facebook"';
+
+android.buildTypes.each {type->
+    type.resValue 'string','FACEBOOK_APP_ID',FACEBOOK_APP_ID
+    type.buildConfigField 'String','FACEBOOK_APP_ID',FACEBOOK_APP_ID
+
+}
 
 android {
     compileSdkVersion 26
@@ -12,7 +19,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources  true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,6 +42,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-auth:16.0.2'
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
+    implementation 'com.google.firebase:firebase-storage:16.0.1'
+    implementation 'com.google.firebase:firebase-crash:16.0.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

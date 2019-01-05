@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Platzigram</string>
+    <string name="title_activity_reference">ReferenceActivity</string>
     <string name="hint_username">Username</string>
     <string name="hint_password">Password</string>
     <string name="text_button_login">Login</string>
     <string name="dontHaveAccount">No tienes cuenta?.</string>
     <string name="createHere">Crea una Aquí</string>
+    <string name="email">Email</string>
+    <string name="name">Nombre</string>
     <string name="text_button_createAccount">Join Us</string>
     <string name="toolbar_tittle_createaccount">Create Account</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="homeMenu">Home</string>
     <string name="searchmenu">Buscar</string>
     <string name="profile_menu">Perfile</string>
     <string name="username_card">Patricio Yumbillo</string>
     <string name="firstword_card">Hace</string>
     <string name="timeCard">4 Horas</string>
+    <string name="likenumber_card">4 likes</string>
+    <string name="lorem">Your bones don\'t break, mine do. That\'s clear. Your cells react to bacteria and viruses differently than mine. You don\'t get sick, I do. That\'s also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We\'re on the same curve, just on opposite ends.</string>
     <string name="secondwordDetail">Me gusta</string>
+    <string name="transitionname_picture">transitionnamepicture</string>
     <string name="tittleimagedetail">\'Todo copas en la playa\'</string>
+    <string name="text_button_createPost">Crear Post</string>
     <string name="login_error">Something is wrong</string>
-    <string name="hintTitle">Titulo</string>
-    <string name="hintDescription">Descripcion</string>
+
+    <string name="fb_login_protocol_scheme">fb2247705105259412</string>
+    <string name="hintTitle">Title</string>
+    <string name="hintDescription">Description</string>
+    <string name="menu_signout">Sign out</string>
+    <string name="menu_about">Acerca de</string>
 </resources>

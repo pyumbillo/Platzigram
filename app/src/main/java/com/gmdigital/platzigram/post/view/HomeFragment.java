@@ -2,11 +2,13 @@ package com.gmdigital.platzigram.post.view;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +21,8 @@ import android.view.ViewGroup;
 import com.gmdigital.platzigram.R;
 import com.gmdigital.platzigram.adapter.PictureAdapterRecyclerView;
 import com.gmdigital.platzigram.model.Picture;
+import com.google.firebase.auth.FirebaseAuthActionCodeException;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.File;
 import java.io.IOException;
@@ -71,6 +75,7 @@ public class HomeFragment extends Fragment {
 
     private void takePicture() {
         Intent intentTakePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        String packageName= getActivity().getPackageName();
         if (intentTakePicture.resolveActivity(getActivity().getPackageManager())!=null) {
             File photoFile= null;
             try{
@@ -79,8 +84,12 @@ public class HomeFragment extends Fragment {
 
             }catch(Exception e){
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
             if (photoFile!=null) {
+
+                Uri photoUri= FileProvider.getUriForFile(getActivity(),packageName,photoFile);
+                intentTakePicture.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
                 startActivityForResult(intentTakePicture,REQUEST_CAMERA);
             }
 
@@ -101,6 +110,9 @@ public class HomeFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
          if (requestCode== REQUEST_CAMERA && resultCode==getActivity().RESULT_OK){
              Log.d("HomeFragment","CAMERA OK :)");
+             Intent i = new Intent(getActivity(),NewPostActivity.class);
+             i.putExtra("PHOTO_PATH_TEMP",photoPathTemp);
+             startActivity(i);
          }
     }
 

@@ -1,6 +1,8 @@
 package com.gmdigital.platzigram.login.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
@@ -29,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.util.Arrays;
 
@@ -60,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
                 if (firebaseUser!=null)
                 {
                     Log.w(TAG,"Usuario Logueado"+firebaseUser.getEmail());
+                    goHome();
                 }else
                 {
                     Log.w(TAG,"Usuario No Logueado");
@@ -100,6 +104,7 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             public void onError(FacebookException error) {
                 Log.w(TAG,"Facebook error "+error.toString());
                 error.printStackTrace();
+                FirebaseCrash.report(error);
             }
         });
 
@@ -111,6 +116,13 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
+
+                    FirebaseUser user=task.getResult().getUser();
+                    SharedPreferences preferences= getSharedPreferences("USER", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor= preferences.edit();
+                    editor.putString("email",user.getEmail());
+                    editor.commit();
+
                     Toast.makeText(LoginActivity.this, "Login Exitoso", Toast.LENGTH_SHORT).show();
                     goHome();
                 }else{
@@ -181,4 +193,9 @@ public class LoginActivity extends AppCompatActivity implements LoginView{
         firebaseAuth.removeAuthStateListener(authStateListener);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode,resultCode,data);
+    }
 }
